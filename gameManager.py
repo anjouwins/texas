@@ -56,11 +56,14 @@ class GameManager:
             self.game.start_hand()
             self.hands_played += 1
 
-            # 显示玩家筹码
-            print("\nPlayer chips:")
+            # 显示玩家筹码和当前手牌
+            print("\nPlayer chips and hands played:")
             for player in self.players:
-                print(f"  {player.name}: ${player.chips}")
+                if player.folded == True:
+                    print(f"  {player.name}: ${player.chips}")
 
+                else:
+                    print(f"  {player.name}: ${player.chips} {player.hand}")
             # 检查是否有玩家出局
             active_players = [p for p in self.players if p.chips > 0]
             if len(active_players) < 2:
